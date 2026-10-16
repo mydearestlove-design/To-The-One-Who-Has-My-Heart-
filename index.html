@@ -153,6 +153,11 @@ button {
   box-shadow: 0 7px 20px #bd788d35;
 }
 
+button:disabled {
+  opacity: .8;
+  cursor: default;
+}
+
 .message {
   background: #fffdf9;
   border: 1px solid #f4dce2;
@@ -239,6 +244,12 @@ footer {
 </head>
 
 <body>
+
+<!-- BACKGROUND MUSIC -->
+<audio id="birthdayMusic" loop preload="auto">
+  <source src="./ssstik.io_1792169687203.mp3" type="audio/mpeg">
+</audio>
+
 <main>
   <p class="eyebrow">A special day for someone special</p>
 
@@ -311,12 +322,26 @@ const envelope = document.getElementById("envelopeArea");
 const button = document.getElementById("openButton");
 const message = document.getElementById("message");
 const hint = document.getElementById("hint");
+const music = document.getElementById("birthdayMusic");
 
 let opened = false;
+
+async function playBirthdayMusic() {
+  music.volume = 0.5;
+
+  try {
+    await music.play();
+  } catch (error) {
+    console.warn("Music could not start:", error);
+  }
+}
 
 function openLetter() {
   if (opened) return;
   opened = true;
+
+  // Start music from the user's click/tap.
+  playBirthdayMusic();
 
   envelope.classList.add("open");
   hint.textContent = "A LITTLE LETTER, WRITTEN WITH LOVE ♡";
@@ -339,12 +364,14 @@ function openLetter() {
 }
 
 envelope.addEventListener("click", openLetter);
+
 envelope.addEventListener("keydown", event => {
   if (event.key === "Enter" || event.key === " ") {
     event.preventDefault();
     openLetter();
   }
 });
+
 button.addEventListener("click", openLetter);
 
 function createHeart() {
