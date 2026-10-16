@@ -1,0 +1,251 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#fff1f4">
+  <title>A Little Surprise for You ♡</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Georgia, "Times New Roman", serif;
+      color: #754b56;
+      background: linear-gradient(135deg, #fff9f3, #ffe5ec);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      overflow-x: hidden;
+    }
+
+    .container {
+      width: min(90%, 460px);
+      padding: 40px 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .bow {
+      font-size: 55px;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .eyebrow {
+      font-family: Arial, sans-serif;
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: #bd8290;
+      margin-top: 25px;
+    }
+
+    h1 {
+      font-size: clamp(36px, 9vw, 53px);
+      font-weight: normal;
+      line-height: 1.2;
+      margin: 22px 0;
+    }
+
+    .intro {
+      font-size: 15px;
+      line-height: 1.9;
+      max-width: 350px;
+      margin: 0 auto;
+    }
+
+    button {
+      margin-top: 28px;
+      border: none;
+      border-radius: 40px;
+      padding: 15px 27px;
+      background: #c17d8d;
+      color: white;
+      font-size: 14px;
+      cursor: pointer;
+      box-shadow: 0 8px 24px #c17d8d40;
+      transition: transform 0.25s;
+    }
+
+    button:hover {
+      transform: translateY(-3px);
+    }
+
+    .letter {
+      background: #fffdf9;
+      border: 1px solid #f4dce1;
+      border-radius: 8px;
+      padding: 25px;
+      margin-top: 30px;
+      box-shadow: 0 15px 40px #9f69741c;
+      text-align: left;
+      animation: appear 0.8s ease both;
+    }
+
+    .letter h2 {
+      font-size: 28px;
+      font-weight: normal;
+      text-align: center;
+    }
+
+    .letter p {
+      font-size: 14px;
+      line-height: 1.9;
+    }
+
+    .signature {
+      text-align: right;
+      font-style: italic;
+      margin-top: 25px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    footer {
+      margin-top: 35px;
+      color: #b68d96;
+      font: 10px Arial, sans-serif;
+      letter-spacing: 2px;
+    }
+
+    .heart {
+      position: fixed;
+      bottom: -30px;
+      color: #d78d9d;
+      pointer-events: none;
+      animation: floatUp linear forwards;
+      z-index: 0;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    @keyframes floatUp {
+      to {
+        transform: translateY(-110vh) rotate(25deg);
+        opacity: 0;
+      }
+    }
+
+    @keyframes appear {
+      from {
+        opacity: 0;
+        transform: translateY(15px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="container">
+    <div class="bow">🎀</div>
+
+    <p class="eyebrow">A little something for you</p>
+
+    <h1>
+      Happy Birthday,<br>
+      My Favorite Person ♡
+    </h1>
+
+    <p class="intro">
+      To the person who makes my world a little more beautiful.
+      I made something special just for you.
+    </p>
+
+    <button id="openButton">
+      Open Your Surprise ♡
+    </button>
+
+    <section class="letter hidden" id="letter">
+      <h2>To My Love ♡</h2>
+
+      <p>Happy birthday, my love. ❤️</p>
+
+      <p>
+        May all your dreams come true. I hope to be by your side,
+        celebrating not just your birthdays, but all the beautiful
+        milestones of our life together.
+      </p>
+
+      <p>
+        Thank you for being someone so special in my life.
+        I hope this new chapter brings you happiness, warmth,
+        and everything your heart has been wishing for.
+      </p>
+
+      <p>
+        No matter how much time passes, I hope we keep finding
+        new reasons to smile, grow, and make beautiful memories
+        together.
+      </p>
+
+      <p class="signature">
+        With all my love,<br>
+        Yours, always ♡
+      </p>
+    </section>
+
+    <footer>
+      MADE WITH LOVE, JUST FOR YOU ♡
+    </footer>
+  </main>
+
+  <script>
+    const button = document.getElementById("openButton");
+    const letter = document.getElementById("letter");
+
+    button.addEventListener("click", () => {
+      letter.classList.remove("hidden");
+      button.textContent = "Sending you more love ♡";
+      button.disabled = true;
+
+      letter.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+      });
+    });
+
+    function createHeart() {
+      const heart = document.createElement("span");
+
+      heart.className = "heart";
+      heart.textContent = ["♡", "♥", "✧"][
+        Math.floor(Math.random() * 3)
+      ];
+
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = (14 + Math.random() * 18) + "px";
+      heart.style.animationDuration = (5 + Math.random() * 4) + "s";
+
+      document.body.appendChild(heart);
+
+      heart.addEventListener("animationend", () => {
+        heart.remove();
+      });
+    }
+
+    setInterval(createHeart, 800);
+  </script>
+</body>
+</html>
