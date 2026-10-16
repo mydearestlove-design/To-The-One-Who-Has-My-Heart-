@@ -2,250 +2,378 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#fff1f4">
-  <title>A Little Surprise for You ♡</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#fff1f5">
+<title>Happy Birthday, Debora ♡</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+<style>
+* { box-sizing: border-box; }
 
-    body {
-      margin: 0;
-      min-height: 100vh;
-      font-family: Georgia, "Times New Roman", serif;
-      color: #754b56;
-      background: linear-gradient(135deg, #fff9f3, #ffe5ec);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      overflow-x: hidden;
-    }
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Georgia, "Times New Roman", serif;
+  color: #855765;
+  background: linear-gradient(145deg, #fffaf5, #ffe4ed);
+  text-align: center;
+  overflow-x: hidden;
+}
 
-    .container {
-      width: min(90%, 460px);
-      padding: 40px 20px;
-      position: relative;
-      z-index: 1;
-    }
+main {
+  width: min(92%, 480px);
+  margin: auto;
+  padding: 55px 15px 45px;
+  position: relative;
+  z-index: 1;
+}
 
-    .bow {
-      font-size: 55px;
-      animation: float 3s ease-in-out infinite;
-    }
+.eyebrow {
+  font: 10px Arial, sans-serif;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: #bd8997;
+}
 
-    .eyebrow {
-      font-family: Arial, sans-serif;
-      font-size: 11px;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      color: #bd8290;
-      margin-top: 25px;
-    }
+h1 {
+  font-size: clamp(32px, 8vw, 45px);
+  line-height: 1.3;
+  font-weight: normal;
+  margin: 24px 0 15px;
+}
 
-    h1 {
-      font-size: clamp(36px, 9vw, 53px);
-      font-weight: normal;
-      line-height: 1.2;
-      margin: 22px 0;
-    }
+h1 span { color: #bc7489; }
 
-    .intro {
-      font-size: 15px;
-      line-height: 1.9;
-      max-width: 350px;
-      margin: 0 auto;
-    }
+.intro {
+  font-size: 14px;
+  line-height: 1.9;
+}
 
-    button {
-      margin-top: 28px;
-      border: none;
-      border-radius: 40px;
-      padding: 15px 27px;
-      background: #c17d8d;
-      color: white;
-      font-size: 14px;
-      cursor: pointer;
-      box-shadow: 0 8px 24px #c17d8d40;
-      transition: transform 0.25s;
-    }
+.envelope-area {
+  margin: 55px auto 30px;
+  width: 230px;
+  height: 180px;
+  position: relative;
+  cursor: pointer;
+  perspective: 900px;
+}
 
-    button:hover {
-      transform: translateY(-3px);
-    }
+.envelope {
+  position: absolute;
+  bottom: 0;
+  width: 230px;
+  height: 140px;
+  border-radius: 5px;
+  background: #e8a8b8;
+  box-shadow: 0 15px 35px #b77b8c30;
+}
 
-    .letter {
-      background: #fffdf9;
-      border: 1px solid #f4dce1;
-      border-radius: 8px;
-      padding: 25px;
-      margin-top: 30px;
-      box-shadow: 0 15px 40px #9f69741c;
-      text-align: left;
-      animation: appear 0.8s ease both;
-    }
+.envelope::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #f4c5d0;
+  clip-path: polygon(0 0, 50% 58%, 100% 0);
+  z-index: 4;
+  transition: transform .7s ease;
+  transform-origin: top;
+}
 
-    .letter h2 {
-      font-size: 28px;
-      font-weight: normal;
-      text-align: center;
-    }
+.envelope::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #d990a5;
+  clip-path: polygon(0 100%, 50% 45%, 100% 100%);
+  z-index: 3;
+}
 
-    .letter p {
-      font-size: 14px;
-      line-height: 1.9;
-    }
+.letter-paper {
+  position: absolute;
+  width: 195px;
+  height: 125px;
+  left: 17px;
+  bottom: 12px;
+  border-radius: 4px;
+  background: #fffdf9;
+  padding: 20px 8px;
+  font-size: 14px;
+  transition: transform 1s ease, opacity .5s ease;
+  z-index: 2;
+}
 
-    .signature {
-      text-align: right;
-      font-style: italic;
-      margin-top: 25px;
-    }
+.seal {
+  position: absolute;
+  z-index: 5;
+  left: 50%;
+  top: 75px;
+  transform: translateX(-50%);
+  width: 39px;
+  height: 39px;
+  background: #b85e7c;
+  color: white;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 21px;
+  box-shadow: 0 3px 12px #87445c35;
+  transition: opacity .3s;
+}
 
-    .hidden {
-      display: none;
-    }
+.envelope-area.open .envelope::before {
+  transform: rotateX(180deg);
+  z-index: 1;
+}
 
-    footer {
-      margin-top: 35px;
-      color: #b68d96;
-      font: 10px Arial, sans-serif;
-      letter-spacing: 2px;
-    }
+.envelope-area.open .letter-paper {
+  transform: translateY(-100px);
+  z-index: 5;
+}
 
-    .heart {
-      position: fixed;
-      bottom: -30px;
-      color: #d78d9d;
-      pointer-events: none;
-      animation: floatUp linear forwards;
-      z-index: 0;
-    }
+.envelope-area.open .seal {
+  opacity: 0;
+}
 
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
+.hint {
+  font-size: 12px;
+  color: #b77e8d;
+  letter-spacing: 1px;
+  animation: pulse 1.8s infinite;
+}
 
-    @keyframes floatUp {
-      to {
-        transform: translateY(-110vh) rotate(25deg);
-        opacity: 0;
-      }
-    }
+button {
+  border: 0;
+  border-radius: 30px;
+  padding: 14px 26px;
+  margin-top: 15px;
+  background: #bd788d;
+  color: white;
+  font-size: 13px;
+  cursor: pointer;
+  box-shadow: 0 7px 20px #bd788d35;
+}
 
-    @keyframes appear {
-      from {
-        opacity: 0;
-        transform: translateY(15px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
+.message {
+  background: #fffdf9;
+  border: 1px solid #f4dce2;
+  border-radius: 8px;
+  padding: 28px 24px;
+  margin-top: 35px;
+  box-shadow: 0 15px 40px #9f69741c;
+  text-align: left;
+  animation: appear 1s ease both;
+}
 
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        transition-duration: 0.01ms !important;
-      }
-    }
-  </style>
+.message h2 {
+  text-align: center;
+  font-size: 27px;
+  font-weight: normal;
+}
+
+.message p {
+  font-size: 14px;
+  line-height: 2;
+}
+
+.signature {
+  text-align: right;
+  font-style: italic;
+  margin-top: 25px;
+}
+
+.hidden { display: none; }
+
+footer {
+  margin-top: 40px;
+  font: 10px Arial, sans-serif;
+  letter-spacing: 2px;
+  color: #b88b98;
+}
+
+.heart {
+  position: fixed;
+  bottom: -30px;
+  z-index: 0;
+  pointer-events: none;
+  color: #d68ca1;
+  animation: floatUp linear forwards;
+}
+
+.sparkle {
+  position: fixed;
+  pointer-events: none;
+  animation: sparkle 1.5s ease-out forwards;
+  z-index: 8;
+}
+
+@keyframes floatUp {
+  to {
+    transform: translateY(-110vh) rotate(35deg);
+    opacity: 0;
+  }
+}
+
+@keyframes appear {
+  from { opacity: 0; transform: translateY(25px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+  50% { opacity: .45; }
+}
+
+@keyframes sparkle {
+  to {
+    transform: translateY(-70px) scale(1.5);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+}
+</style>
 </head>
 
 <body>
-  <main class="container">
-    <div class="bow">🎀</div>
+<main>
+  <p class="eyebrow">A special day for someone special</p>
 
-    <p class="eyebrow">A little something for you</p>
+  <h1>
+    Happy Birthday<br>
+    <span>My Love</span><br>
+    Debora Oktaviana Duha ♡
+  </h1>
 
-    <h1>
-      Happy Birthday,<br>
-      My Favorite Person ♡
-    </h1>
+  <p class="intro">
+    Today is all about you, my love.<br>
+    I made a little surprise just for you.
+  </p>
 
-    <p class="intro">
-      To the person who makes my world a little more beautiful.
-      I made something special just for you.
+  <div class="envelope-area" id="envelopeArea"
+       role="button" tabindex="0"
+       aria-label="Open your love letter">
+    <div class="envelope">
+      <div class="letter-paper">
+        <span style="font-size:27px">♡</span>
+        <br>To my dearest love
+      </div>
+      <div class="seal">♥</div>
+    </div>
+  </div>
+
+  <p class="hint" id="hint">♡ TAP THE ENVELOPE TO OPEN ♡</p>
+
+  <button id="openButton">Open My Love Letter ♡</button>
+
+  <section class="message hidden" id="message">
+    <h2>To My Dearest Debora ♡</h2>
+
+    <p>Happy birthday, my love. ❤️</p>
+
+    <p>
+      May all your dreams come true. I hope to be by your side,
+      celebrating not just your birthdays, but all the beautiful
+      milestones of our life together.
     </p>
 
-    <button id="openButton">
-      Open Your Surprise ♡
-    </button>
+    <p>
+      You are someone truly special to me. On your birthday,
+      I wish you endless happiness, good health, and the courage
+      to achieve everything your heart desires.
+    </p>
 
-    <section class="letter hidden" id="letter">
-      <h2>To My Love ♡</h2>
+    <p>
+      I hope we continue to grow together, support each other,
+      and create beautiful memories that we will cherish for
+      the rest of our lives.
+    </p>
 
-      <p>Happy birthday, my love. ❤️</p>
+    <p>
+      If I could wish for one more thing, it would be to celebrate
+      many more birthdays with you, hand in hand, through every
+      chapter of our story.
+    </p>
 
-      <p>
-        May all your dreams come true. I hope to be by your side,
-        celebrating not just your birthdays, but all the beautiful
-        milestones of our life together.
-      </p>
+    <p class="signature">
+      With all my love,<br>
+      Yours, always ♡
+    </p>
+  </section>
 
-      <p>
-        Thank you for being someone so special in my life.
-        I hope this new chapter brings you happiness, warmth,
-        and everything your heart has been wishing for.
-      </p>
+  <footer>MADE WITH LOVE, JUST FOR YOU ♡</footer>
+</main>
 
-      <p>
-        No matter how much time passes, I hope we keep finding
-        new reasons to smile, grow, and make beautiful memories
-        together.
-      </p>
+<script>
+const envelope = document.getElementById("envelopeArea");
+const button = document.getElementById("openButton");
+const message = document.getElementById("message");
+const hint = document.getElementById("hint");
 
-      <p class="signature">
-        With all my love,<br>
-        Yours, always ♡
-      </p>
-    </section>
+let opened = false;
 
-    <footer>
-      MADE WITH LOVE, JUST FOR YOU ♡
-    </footer>
-  </main>
+function openLetter() {
+  if (opened) return;
+  opened = true;
 
-  <script>
-    const button = document.getElementById("openButton");
-    const letter = document.getElementById("letter");
+  envelope.classList.add("open");
+  hint.textContent = "A LITTLE LETTER, WRITTEN WITH LOVE ♡";
+  button.textContent = "Read Your Birthday Letter ♡";
 
-    button.addEventListener("click", () => {
-      letter.classList.remove("hidden");
-      button.textContent = "Sending you more love ♡";
-      button.disabled = true;
+  for (let i = 0; i < 18; i++) {
+    setTimeout(createSparkle, i * 65);
+  }
 
-      letter.scrollIntoView({
-        behavior: "smooth",
-        block: "center"
-      });
+  setTimeout(() => {
+    message.classList.remove("hidden");
+    button.textContent = "With Love, Always ♡";
+    button.disabled = true;
+
+    message.scrollIntoView({
+      behavior: "smooth",
+      block: "center"
     });
+  }, 1100);
+}
 
-    function createHeart() {
-      const heart = document.createElement("span");
+envelope.addEventListener("click", openLetter);
+envelope.addEventListener("keydown", event => {
+  if (event.key === "Enter" || event.key === " ") {
+    event.preventDefault();
+    openLetter();
+  }
+});
+button.addEventListener("click", openLetter);
 
-      heart.className = "heart";
-      heart.textContent = ["♡", "♥", "✧"][
-        Math.floor(Math.random() * 3)
-      ];
+function createHeart() {
+  const heart = document.createElement("span");
+  heart.className = "heart";
+  heart.textContent = Math.random() > .5 ? "♡" : "♥";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = (14 + Math.random() * 18) + "px";
+  heart.style.animationDuration = (5 + Math.random() * 5) + "s";
 
-      heart.style.left = Math.random() * 100 + "vw";
-      heart.style.fontSize = (14 + Math.random() * 18) + "px";
-      heart.style.animationDuration = (5 + Math.random() * 4) + "s";
+  document.body.appendChild(heart);
+  heart.addEventListener("animationend", () => heart.remove());
+}
 
-      document.body.appendChild(heart);
+function createSparkle() {
+  const sparkle = document.createElement("span");
+  sparkle.className = "sparkle";
+  sparkle.textContent = ["♡", "✧", "♥"][Math.floor(Math.random() * 3)];
+  sparkle.style.left = (20 + Math.random() * 60) + "vw";
+  sparkle.style.top = (25 + Math.random() * 45) + "vh";
+  sparkle.style.color = "#c77992";
+  sparkle.style.fontSize = (16 + Math.random() * 20) + "px";
 
-      heart.addEventListener("animationend", () => {
-        heart.remove();
-      });
-    }
+  document.body.appendChild(sparkle);
+  sparkle.addEventListener("animationend", () => sparkle.remove());
+}
 
-    setInterval(createHeart, 800);
-  </script>
+setInterval(createHeart, 750);
+</script>
 </body>
 </html>
